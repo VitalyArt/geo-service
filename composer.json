@@ -1,0 +1,19 @@
+{
+    "name": "vitalyart/geo",
+    "autoload": {
+        "psr-4": {
+            "Vitalyart\\Geo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vitaly Artemev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "nyholm/psr7": "^1.5",
+        "spiral/roadrunner": "v2.0",
+        "mjaschen/phpgeo": "^4.2"
+    }
+}

@@ -1,0 +1,22 @@
+version: "2.7"
+
+server:
+  command: "php /app/psr-worker.php"
+
+http:
+  address: 0.0.0.0:8080
+  pool:
+    num_workers: 4
+
+reload:
+  interval: 1s
+  patterns: [ ".php" ]
+  services:
+    http:
+      recursive: true
+      ignore: [ "vendor" ]
+      patterns: [ ".php", ".go", ".md" ]
+      dirs: [ "." ]
+
+#logs:
+#  level: info

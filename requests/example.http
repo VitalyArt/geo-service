@@ -1,0 +1,24 @@
+POST http://0.0.0.0:8080/contains
+Content-Type: application/json
+Accept: application/json
+
+{
+  "polygon": [
+    {
+      "lat": 10,
+      "lng": 10
+    },
+    {
+      "lat": 20,
+      "lng": 20
+    },
+    {
+      "lat": 30,
+      "lng": 10
+    }
+  ],
+  "point": {
+    "lat": 15,
+    "lng": 15
+  }
+}
