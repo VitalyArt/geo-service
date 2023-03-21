@@ -1,6 +1,9 @@
 # Development
 .git
+.gitignore
 .idea
+Makefile
 
 # Build
+.dockerignore
 vendor

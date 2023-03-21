@@ -12,3 +12,5 @@ RUN docker-php-ext-install sockets zip
 COPY . .
 
 RUN composer install
+
+CMD ["rr", "serve", "-c", ".rr-prod.yaml"]

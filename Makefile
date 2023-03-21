@@ -1,11 +1,14 @@
 build:
-	docker build -t geo .
+	docker build -t vitalyart/geo-service .
+
+push:
+	docker push vitalyart/geo-service
 
 run_dev:
-	docker run --rm -it -v `pwd`:/app -p 8080:8080 geo rr serve
+	docker run --rm -it -v `pwd`:/app -p 8080:8080 vitalyart/geo-service rr serve
 
 run_prod:
-	docker run -p 8080:8080 geo rr serve
+	docker run -p 8080:8080 vitalyart/geo-service rr serve
 
 bash:
-	docker run -v `pwd`:/app --rm -it geo bash
+	docker run -v `pwd`:/app --rm -it vitalyart/geo-service bash

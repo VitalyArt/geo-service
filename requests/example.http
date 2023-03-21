@@ -1,4 +1,4 @@
-POST http://0.0.0.0:8080/contains
+POST {{host}}/contains
 Content-Type: application/json
 Accept: application/json
 
