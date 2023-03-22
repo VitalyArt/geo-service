@@ -10,3 +10,4 @@ http:
   address: 0.0.0.0:80
   pool:
     num_workers: 4
+  middleware: [ "http_metrics" ]
