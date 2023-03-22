@@ -3,6 +3,9 @@ version: "2.7"
 server:
   command: "php /app/psr-worker.php"
 
+metrics:
+  address: 0.0.0.0:2112
+
 http:
   address: 0.0.0.0:80
   pool:
