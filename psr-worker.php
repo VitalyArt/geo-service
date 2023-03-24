@@ -41,4 +41,6 @@ while (true) {
     } catch (Throwable $e) {
         $psr7->respond(new Psr7\Response(500, [], $e->getMessage() . PHP_EOL . $e->getTraceAsString()));
     }
+
+    gc_collect_cycles();
 }
