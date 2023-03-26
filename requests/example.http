@@ -1,4 +1,4 @@
-POST {{host}}/contains
+POST {{host}}/v1/contains
 Content-Type: application/json
 Accept: application/json
 

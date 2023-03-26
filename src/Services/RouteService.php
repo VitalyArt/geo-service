@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Vitalyart\Geo\Services;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Spiral\Core\Exception\Container\NotFoundException;
+use Vitalyart\Geo\Exceptions\ApiException;
 use Vitalyart\Geo\Handlers\BaseHandler;
 
 class RouteService
@@ -25,7 +25,7 @@ class RouteService
         $key = $method . '-' . $route;
 
         if (!isset($this->handlers[$key])) {
-            throw new NotFoundException('Not found');
+            throw new ApiException('Not found', 404);
         }
 
         /** @var BaseHandler $handler */

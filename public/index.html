@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Geo API</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"></script>
+<div id="redoc-container"></div>
+<script>
+  Redoc.init('/swagger.yaml', {
+    theme: {
+      menu: {
+        backgroundColor: "#292f3e",
+        textColor: "#ffffff",
+      }
+    },
+  }, document.getElementById('redoc-container'))
+</script>
+</body>
+</html>

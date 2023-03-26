@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-use Spiral\Core\Exception\Container\NotFoundException;
-use Spiral\RoadRunner;
 use Nyholm\Psr7;
-use Vitalyart\Geo\Handlers\ContainsHandler;
-use Vitalyart\Geo\Services\RouteService;
+use Spiral\RoadRunner;
+use Vitalyart\Geo\Exceptions\ApiException;
+use Vitalyart\Geo\Handlers\IndexHandler;
+use Vitalyart\Geo\Handlers\V1\ContainsHandler;
 use Vitalyart\Geo\Services\RequestBodyParserService;
+use Vitalyart\Geo\Services\RouteService;
 
 include __DIR__ . '/vendor/autoload.php';
 
@@ -17,6 +18,7 @@ $psrFactory = new Psr7\Factory\Psr17Factory();
 $psr7 = new RoadRunner\Http\PSR7Worker($worker, $psrFactory, $psrFactory, $psrFactory);
 
 $router = new RouteService();
+$router->addRoute('GET', IndexHandler::ROUTE, IndexHandler::class);
 $router->addRoute('POST', ContainsHandler::ROUTE, ContainsHandler::class);
 
 while (true) {
@@ -36,8 +38,8 @@ while (true) {
 
     try {
         $psr7->respond($router->handle($request));
-    } catch (NotFoundException $e) {
-        $psr7->respond(new Psr7\Response(404, [], $e->getMessage()));
+    } catch (ApiException $e) {
+        $psr7->respond(new Psr7\Response($e->getCode(), [], $e->getMessage()));
     } catch (Throwable $e) {
         $psr7->respond(new Psr7\Response(500, [], $e->getMessage() . PHP_EOL . $e->getTraceAsString()));
     }

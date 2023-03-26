@@ -10,7 +10,11 @@ http:
   address: 0.0.0.0:8080
   pool:
     num_workers: 4
-  middleware: [ "http_metrics" ]
+  middleware: [ "http_metrics", "static" ]
+  static:
+    dir: "public"
+    response:
+      "X-Powered-By": "RoadRunner"
 
 reload:
   interval: 1s

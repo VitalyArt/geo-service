@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: 'Geo API'
+servers:
+  - url: 'https://geo.vitalyart.ru/'
+paths:
+  /v1/contains:
+    post:
+      summary: 'Checking the occurrence of a point in a polygon'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                polygon:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      lat:
+                        type: number
+                      ing:
+                        type: number
+                point:
+                  type: object
+                  properties:
+                    lat:
+                      type: number
+                    ing:
+                      type: number
+              type: object
