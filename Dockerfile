@@ -1,5 +1,5 @@
-FROM ghcr.io/roadrunner-server/roadrunner:2.12.3 AS roadrunner
-FROM php:8.2-cli-alpine
+FROM --platform=linux/amd64 ghcr.io/roadrunner-server/roadrunner:2.12.3 AS roadrunner
+FROM --platform=linux/amd64 php:8.2-cli-alpine
 
 WORKDIR /app
 
