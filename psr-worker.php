@@ -39,7 +39,15 @@ while (true) {
     try {
         $psr7->respond($router->handle($request));
     } catch (ApiException $e) {
-        $psr7->respond(new Psr7\Response($e->getCode(), [], $e->getMessage()));
+        $headers = [
+            'Content-type' => 'application/json',
+        ];
+
+        $body = [
+            'error_description' => $e->getMessage(),
+        ];
+
+        $psr7->respond(new Psr7\Response($e->getCode(), $headers, json_encode($body)));
     } catch (Throwable $e) {
         $psr7->respond(new Psr7\Response(500, [], $e->getMessage() . PHP_EOL . $e->getTraceAsString()));
     }

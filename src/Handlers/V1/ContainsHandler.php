@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vitalyart\Geo\Handlers\V1;
 
+use InvalidArgumentException;
 use Location\Coordinate;
 use Location\Polygon;
 use Vitalyart\Geo\Exceptions\ApiException;
@@ -22,10 +23,18 @@ class ContainsHandler extends BaseHandler
         $polygon = new Polygon();
 
         foreach ($body['polygon'] as $point) {
-            $polygon->addPoint(new Coordinate($point['lat'], $point['lng']));
+            try {
+                $polygon->addPoint(new Coordinate($point['lat'], $point['lng']));
+            } catch (InvalidArgumentException $e) {
+                throw new ApiException($e->getMessage(), 400);
+            }
         }
 
-        $point = new Coordinate($body['point']['lat'], $body['point']['lng']);
+        try {
+            $point = new Coordinate($body['point']['lat'], $body['point']['lng']);
+        } catch (InvalidArgumentException $e) {
+            throw new ApiException($e->getMessage(), 400);
+        }
 
         $this->responseBody = [
             'contains' => $polygon->contains($point),
